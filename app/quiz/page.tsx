@@ -6,6 +6,9 @@ import { QuestionType } from "@/types/questions";
 import { useSearchParams } from "next/navigation";
 import { MdArrowRightAlt } from "react-icons/md";
 import QuestionsCard from "@/components/quiz/questions-card";
+import genQuestions from "@/lib/gen-questions";
+import { Spinner } from "@/components/shared/spinner";
+import { Error } from "@/components/shared/error";
 
 export default function Quiz() {
 	const searchParam = useSearchParams();
@@ -17,34 +20,52 @@ export default function Quiz() {
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
+		setIsLoading(true);
+		setError(null);
+
 		const fetchQuestions = async () => {
-			setIsLoading(true);
 			try {
-				const response = await fetch("/api/gen-questions", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({ topic, difficulty }),
-				});
-				const data = await response.json();
-				setQuestions(() => data.questions);
+				if (!topic || !difficulty) {
+					setError("Topic and difficulty are required");
+					return;
+				}
+
+				// check if questions are in local storage
+				const storedQuestions = localStorage.getItem("questions");
+				if (storedQuestions) {
+					setQuestions(JSON.parse(storedQuestions));
+				} else {
+					const questions = await genQuestions(topic, difficulty);
+					localStorage.setItem(
+						"questions",
+						JSON.stringify(questions)
+					);
+					setQuestions(questions);
+				}
 			} catch (error) {
 				setError("Failed to fetch questions");
 			} finally {
 				setIsLoading(false);
 			}
 		};
-
 		fetchQuestions();
 	}, [topic, difficulty]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return (
+			<div className="flex flex-col items-center justify-center h-screen">
+				<Spinner />
+				<p className="mt-2 text-center">Generating questions...</p>
+			</div>
+		);
 	}
 
 	if (error) {
-		return <div>{error}</div>;
+		return (
+			<div className="flex flex-col items-center justify-center h-screen">
+				<Error message={error || "Failed to fetch questions!"} />
+			</div>
+		);
 	}
 
 	return (

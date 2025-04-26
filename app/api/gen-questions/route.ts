@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 		messages: [{ role: "user", content: prompt }],
 	});
 
-	const questions = JSON.parse(response.choices[0].message.content || "[]");
+	const questions = JSON.parse(response?.choices[0].message.content || "[]");
 	console.log("questions", questions);
 
 	return NextResponse.json({
