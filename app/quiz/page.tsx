@@ -50,6 +50,7 @@ export default function Quiz() {
 				}
 			} catch (error) {
 				setError("Failed to fetch questions");
+				console.error(error);
 			} finally {
 				setIsLoading(false);
 			}
@@ -65,8 +66,6 @@ export default function Quiz() {
 	};
 
 	const handleSubmit = () => {
-		console.log("userAnswers", userAnswers);
-
 		if (userAnswers.length !== questions.length) {
 			toast.error("Please answer all questions");
 		}

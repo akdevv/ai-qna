@@ -38,8 +38,6 @@ export async function POST(req: Request) {
 	});
 
 	const questions = JSON.parse(response?.choices[0].message.content || "[]");
-	console.log("questions", questions);
-
 	return NextResponse.json({
 		questions,
 		message: "Questions generated successfully",

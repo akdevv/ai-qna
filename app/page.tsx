@@ -47,6 +47,7 @@ export default function Home() {
 			}
 		} catch (error) {
 			setError("Failed to fetch questions");
+			console.error(error);
 		} finally {
 			setIsLoading(false);
 		}

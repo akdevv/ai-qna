@@ -41,9 +41,6 @@ export async function POST(req: Request) {
 		},
 	});
 
-	console.log("response", response);
-
 	const questions = JSON.parse(response.data.response);
-
 	return NextResponse.json({ questions });
 }
