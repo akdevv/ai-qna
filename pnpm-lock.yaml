@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@huggingface/inference':
+        specifier: ^3.9.2
+        version: 3.9.2
       '@radix-ui/react-select':
         specifier: ^2.2.2
         version: 2.2.2(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -137,6 +140,17 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@huggingface/inference@3.9.2':
+    resolution: {integrity: sha512-7EpMgaELUJArqhFpinkyikO1iXza4lEBYcUF8HMDVabwI2QxCXmxb6coCgYmerHEfRRxsvqogwNrdxiUfcSvDg==}
+    engines: {node: '>=18'}
+
+  '@huggingface/jinja@0.3.4':
+    resolution: {integrity: sha512-kFFQWJiWwvxezKQnvH1X7GjsECcMljFx+UZK9hx6P26aVHwwidJVTB0ptLfRVZQvVkOGHoMmTGvo4nT0X9hHOA==}
+    engines: {node: '>=18'}
+
+  '@huggingface/tasks@0.18.11':
+    resolution: {integrity: sha512-KSGMkOi86Ap2xTWGxwnSj8cE+glYhhwyHMdGDJn4dsOz1LzWq8kQF0epeZRkjBgwdTSBFpCk3+3FGdi6tXch7A==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2168,6 +2182,15 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
 
   '@floating-ui/utils@0.2.9': {}
+
+  '@huggingface/inference@3.9.2':
+    dependencies:
+      '@huggingface/jinja': 0.3.4
+      '@huggingface/tasks': 0.18.11
+
+  '@huggingface/jinja@0.3.4': {}
+
+  '@huggingface/tasks@0.18.11': {}
 
   '@humanfs/core@0.19.1': {}
 
