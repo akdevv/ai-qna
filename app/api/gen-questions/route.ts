@@ -1,10 +1,9 @@
+import { Groq } from "groq-sdk";
 import { NextResponse } from "next/server";
-import { InferenceClient } from "@huggingface/inference";
 
-const hf = new InferenceClient(process.env.HF_API_TOKEN);
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req: Request) {
-	console.log("Generating questions...");
 	const { topic, difficulty } = await req.json();
 
 	if (!topic || !difficulty) {
@@ -33,19 +32,14 @@ export async function POST(req: Request) {
 	<|im_start|>assistant
 	`;
 
-	const response = await hf.chatCompletion({
-		provider: "hf-inference",
-		model: "mistralai/Mistral-7B-Instruct-v0.3",
+	const response = await groq.chat.completions.create({
+		model: "gemma2-9b-it",
 		messages: [{ role: "user", content: prompt }],
-		parameters: {
-			max_new_tokens: 2048,
-			temperature: 0.7,
-			return_full_text: false,
-		},
 	});
 
-	const questions =
-		JSON.parse(response.choices[0].message.content || "[]") || [];
+	const questions = JSON.parse(response.choices[0].message.content || "[]");
+	console.log("questions", questions);
+
 	return NextResponse.json({
 		questions,
 		message: "Questions generated successfully",
