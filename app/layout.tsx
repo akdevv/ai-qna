@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
 	title: "AI QnA",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`antialiased font-montserrat`}>{children}</body>
+			<body className={`antialiased font-montserrat`}>
+				{children}
+				<Toaster />
+			</body>
 		</html>
 	);
 }

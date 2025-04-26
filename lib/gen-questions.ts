@@ -1,4 +1,4 @@
-import { QuestionType } from "@/types/questions";
+import { QuestionType } from "@/types/types";
 
 const genQuestions = async (
 	topic: string,
