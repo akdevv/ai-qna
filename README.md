@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Quiz App
+
+A modern quiz application powered by Groq's AI model that generates questions based on user-selected topics and difficulty levels. Users can choose from various topics like science, technology, history, Marvel, Harry Potter, and more.
+
+## Features
+
+- Dynamic quiz generation using Groq's AI model
+- Multiple topic selection
+- Adjustable difficulty levels
+- Real-time question generation
+- Modern and responsive UI
+
+## Tools and Technologies
+
+- **Framework**: Next.js
+- **Language**: TypeScript
+- **Package Manager**: pnpm
+- **UI Components**: Shadcn
+- **Styling**: Tailwind CSS
+- **AI Model**: Groq (gemma2-9b-it)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (latest LTS version recommended)
+- pnpm package manager
+- Groq API key
+
+### Local Development
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a Groq account and get your API key:
+   - Visit [Groq](https://groq.com/)
+   - Sign up for an account
+   - Get your API key from the dashboard
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Create a `.env.local` file in the root directory and add your API key:
+```bash
+GROQ_API_KEY=<your-api-key>
+```
+
+5. Run the development server:
+```bash
+pnpm dev
+```
+
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+## Project Structure
+
+The project uses Next.js App Router and follows the standard Next.js project structure. The main application code is in the `app` directory.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Shadcn UI Documentation](https://ui.shadcn.com/)
+- [Groq Documentation](https://groq.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
